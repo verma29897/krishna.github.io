@@ -42,6 +42,12 @@ $(document).ready(function () {
   /* =========form Js =============*/
 
 
+
+
+
+    // <!-- emailjs to mail contact form data -->
+
+});
 document.getElementById("contact-form").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent form submission to the server
 
@@ -72,9 +78,7 @@ document.getElementById("contact-form").addEventListener("submit", function (eve
 });
 
 
-    // <!-- emailjs to mail contact form data -->
 
-});
 
 document.addEventListener('visibilitychange',
     function () {
