@@ -39,25 +39,38 @@ $(document).ready(function () {
 
     // <!-- emailjs to mail contact form data -->
   
-  document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+  /* =========form Js =============*/
 
-    const formData = new FormData(this);
 
-    fetch('/submit-form', {
-      method: 'POST',
-      body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Handle the response data
-      console.log(data);
-    })
-    .catch(error => {
-      // Handle any errors
-      console.error('Error:', error);
-    });
-  });
+document.getElementById("contact-form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent form submission to the server
+
+    // Get form data
+    const formData = new FormData(event.target);
+    const data = {
+        Name: formData.get("name"),
+        Email: formData.get("email"),
+        Phone: formData.get("phone") || "N/A",
+        Message: formData.get("message")
+    };
+
+    // Convert data to an array for SheetJS
+    const worksheetData = [
+        ["Name", "Email", "Phone", "Message"],
+        [data.Name, data.Email, data.Phone, data.Message]
+    ];
+
+    // Create a new workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+
+    // Append worksheet to workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Contact Form");
+
+    // Generate and download Excel file
+    XLSX.writeFile(workbook, "Contact_Form_Data.xlsx");
+});
+
 
     // <!-- emailjs to mail contact form data -->
 
@@ -196,38 +209,6 @@ document.onkeydown = function (e) {
         return false;
     }
 }
-/* =========form Js =============*/
-
-
-document.getElementById("contact-form").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission to the server
-
-    // Get form data
-    const formData = new FormData(event.target);
-    const data = {
-        Name: formData.get("name"),
-        Email: formData.get("email"),
-        Phone: formData.get("phone") || "N/A",
-        Message: formData.get("message")
-    };
-
-    // Convert data to an array for SheetJS
-    const worksheetData = [
-        ["Name", "Email", "Phone", "Message"],
-        [data.Name, data.Email, data.Phone, data.Message]
-    ];
-
-    // Create a new workbook and worksheet
-    const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
-
-    // Append worksheet to workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Contact Form");
-
-    // Generate and download Excel file
-    XLSX.writeFile(workbook, "Contact_Form_Data.xlsx");
-});
-
 
 
 
