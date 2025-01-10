@@ -34,67 +34,24 @@ $(document).ready(function () {
         e.preventDefault();
         $('html, body').animate({
             scrollTop: $($(this).attr('href')).offset().top,
-        }, 500, 'linear')
+        }, 500, 'linear');
     });
 
-
-
-<<<<<<< HEAD:assets/js/script.js
-
-
-
-    // <!-- emailjs to mail contact form data -->
-
-});
-document.getElementById("contact-form").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission to the server
-
-    // Get form data
-    const formData = new FormData(event.target);
-    const data = {
-        Name: formData.get("name"),
-        Email: formData.get("email"),
-        Phone: formData.get("phone") || "N/A",
-        Message: formData.get("message")
-    };
-
-    // Convert data to an array for SheetJS
-    const worksheetData = [
-        ["Name", "Email", "Phone", "Message"],
-        [data.Name, data.Email, data.Phone, data.Message]
-    ];
-
-    // Create a new workbook and worksheet
-    const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
-
-    // Append worksheet to workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Contact Form");
-
-    // Generate and download Excel file
-    XLSX.writeFile(workbook, "Contact_Form_Data.xlsx");
 });
 
-
-
-=======
+document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === "visible") {
+        document.title = "Portfolio | KRISHNA KUMAR VERMA";
+        $("#favicon").attr("href", "assets/images/favicon.png");
+    } else {
+        document.title = "Come Back To Portfolio";
+        $("#favicon").attr("href", "assets/images/favhand.png");
+    }
 });
->>>>>>> f3b61cb (convert into py):static/assets/js/script.js
 
-document.addEventListener('visibilitychange',
-    function () {
-        if (document.visibilityState === "visible") {
-            document.title = "Portfolio | KRISHNA KUMAR VERMA";
-            $("#favicon").attr("href", "assets/images/favicon.png");
-        }
-        else {
-            document.title = "Come Back To Portfolio";
-            $("#favicon").attr("href", "assets/images/favhand.png");
-        }
-    });
 // <!-- typed js effect starts -->
 var typed = new Typed(".typing-text", {
-    strings: ["Python Development", "Backend Development",  "Automation Development", "Machine Learning",  "Linux Development"],
+    strings: ["Python Development", "Backend Development", "Automation Development", "Machine Learning", "Linux Development"],
     loop: true,
     typeSpeed: 50,
     backSpeed: 25,
@@ -103,13 +60,13 @@ var typed = new Typed(".typing-text", {
 // <!-- typed js effect ends -->
 
 async function fetchData(type = "skills") {
-    let response
-    
+    let response;
+
     if (type === "skills") {
-            response = await fetch("/static/assets/skills.json");
+        response = await fetch("/static/assets/skills.json");
     } else {
-            response = await  fetch("/static/assets/skills.json");
-        }
+        response = await fetch("/static/assets/skills.json");
+    }
     const data = await response.json();
     return data;
 }
@@ -124,27 +81,20 @@ function showSkills(skills) {
                 <img src=${skill.icon} alt="skill" />
                 <span>${skill.name}</span>
               </div>
-            </div>`
+            </div>`;
     });
     skillsContainer.innerHTML = skillHTML;
 }
 
-
-
-    
-
 fetchData().then(data => {
     showSkills(data);
 });
-
-
 
 // <!-- tilt js effect starts -->
 VanillaTilt.init(document.querySelectorAll(".tilt"), {
     max: 15,
 });
 // <!-- tilt js effect ends -->
-
 
 // pre loader start
 // function loader() {
@@ -175,8 +125,6 @@ document.onkeydown = function (e) {
     }
 }
 
-
-
 /* ===== SCROLL REVEAL ANIMATION ===== */
 const srtop = ScrollReveal({
     origin: 'top',
@@ -205,7 +153,6 @@ srtop.reveal('.about .content p', { delay: 200 });
 srtop.reveal('.about .content .box-container', { delay: 200 });
 srtop.reveal('.about .content .resumebtn', { delay: 200 });
 
-
 /* SCROLL SKILLS */
 srtop.reveal('.skills .container', { interval: 200 });
 srtop.reveal('.skills .container .bar', { delay: 400 });
@@ -218,11 +165,7 @@ srtop.reveal('.work .box', { interval: 200 });
 
 /* SCROLL EXPERIENCE */
 srtop.reveal('.experience .timeline', { delay: 400 });
-<<<<<<< HEAD:assets/js/script.js
-srtop.reveal('.experience .timeline .container', { interval: 400 )};
-=======
 srtop.reveal('.experience .timeline .container', { interval: 400 });
->>>>>>> f3b61cb (convert into py):static/assets/js/script.js
 
 /* SCROLL CONTACT */
 srtop.reveal('.contact .container', { delay: 400 });
