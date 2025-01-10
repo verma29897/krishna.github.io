@@ -37,11 +37,9 @@ $(document).ready(function () {
         }, 500, 'linear')
     });
 
-    // <!-- emailjs to mail contact form data -->
-  
-  /* =========form Js =============*/
 
 
+<<<<<<< HEAD:assets/js/script.js
 
 
 
@@ -79,6 +77,9 @@ document.getElementById("contact-form").addEventListener("submit", function (eve
 
 
 
+=======
+});
+>>>>>>> f3b61cb (convert into py):static/assets/js/script.js
 
 document.addEventListener('visibilitychange',
     function () {
@@ -91,8 +92,6 @@ document.addEventListener('visibilitychange',
             $("#favicon").attr("href", "assets/images/favhand.png");
         }
     });
-
-
 // <!-- typed js effect starts -->
 var typed = new Typed(".typing-text", {
     strings: ["Python Development", "Backend Development",  "Automation Development", "Machine Learning",  "Linux Development"],
@@ -105,10 +104,12 @@ var typed = new Typed(".typing-text", {
 
 async function fetchData(type = "skills") {
     let response
-    type === "skills" ?
-        response = await fetch("skills.json")
-        :
-        response = await fetch("./projects/projects.json")
+    
+    if (type === "skills") {
+            response = await fetch("/static/assets/skills.json");
+    } else {
+            response = await  fetch("/static/assets/skills.json");
+        }
     const data = await response.json();
     return data;
 }
@@ -128,55 +129,15 @@ function showSkills(skills) {
     skillsContainer.innerHTML = skillHTML;
 }
 
-function showProjects(projects) {
-    let projectsContainer = document.querySelector("#work .box-container");
-    let projectHTML = "";
-    projects.slice(0, 6).forEach(project => {
-        projectHTML += `
-        <div class="box tilt">
-      <img draggable="false" src="/assets/images/projects/${project.image}.png" alt="project" />
-      <div class="content">
-        <div class="tag">
-        <h3>${project.name}</h3>
-        </div>
-        <div class="desc">
-          <p>${project.desc}</p>
-          <div class="btns">
-            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>`
-    });
-    projectsContainer.innerHTML = projectHTML;
 
-    // <!-- tilt js effect starts -->
-    VanillaTilt.init(document.querySelectorAll(".tilt"), {
-        max: 15,
-    });
-    // <!-- tilt js effect ends -->
 
-    /* ===== SCROLL REVEAL ANIMATION ===== */
-    const srtop = ScrollReveal({
-        origin: 'top',
-        distance: '80px',
-        duration: 1000,
-        reset: true
-    });
-
-    /* SCROLL PROJECTS */
-    srtop.reveal('.work .box', { interval: 200 });
-
-}
+    
 
 fetchData().then(data => {
     showSkills(data);
 });
 
-fetchData("projects").then(data => {
-    showProjects(data);
-});
+
 
 // <!-- tilt js effect starts -->
 VanillaTilt.init(document.querySelectorAll(".tilt"), {
@@ -257,7 +218,11 @@ srtop.reveal('.work .box', { interval: 200 });
 
 /* SCROLL EXPERIENCE */
 srtop.reveal('.experience .timeline', { delay: 400 });
+<<<<<<< HEAD:assets/js/script.js
 srtop.reveal('.experience .timeline .container', { interval: 400 )};
+=======
+srtop.reveal('.experience .timeline .container', { interval: 400 });
+>>>>>>> f3b61cb (convert into py):static/assets/js/script.js
 
 /* SCROLL CONTACT */
 srtop.reveal('.contact .container', { delay: 400 });
