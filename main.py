@@ -65,4 +65,4 @@ def submit_form():
         return 'Form submitted successfully!'
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
