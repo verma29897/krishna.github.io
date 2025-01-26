@@ -107,6 +107,30 @@ VanillaTilt.init(document.querySelectorAll(".tilt"), {
 // pre loader end
 
 // disable developer mode
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+    var emailField = document.getElementById("email");
+    var email = emailField.value;
+    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    var phoneField = document.getElementById("phone");
+    var phone = phoneField.value;
+    var phonePattern = /^[0-9]{10}$/; // Validates 10-digit mobile number
+
+    // Email validation
+    if (!emailPattern.test(email)) {
+      event.preventDefault();
+      alert("Please enter a valid email address.");
+    }
+    
+    // Phone number validation
+    if (!phonePattern.test(phone)) {
+      event.preventDefault();
+      alert("Please enter a valid 10-digit mobile number.");
+    }
+  });
+
+
+
 document.onkeydown = function (e) {
     if (e.keyCode == 123) {
         return false;
