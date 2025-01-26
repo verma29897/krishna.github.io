@@ -27,8 +27,6 @@ def send_verification_email(name,email,phone,message):
         Email: {email}
         Phone: {phone}
         Message: {message}
-
-        Please check for further inquiries or requests. Feel free to reach out for more details or clarification. We look forward to engaging with this person. Thank you for your attention to this matter.
         """
         subject = f'Visit my Website {name}'
 
